@@ -4,7 +4,7 @@
 - [X] A concise and compelling elevator pitch
 - [X] Description of key features
 - [X] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -13,7 +13,9 @@ Users can manage all feedback in a single dashboard with real-time notifications
 
 ### Design
 
-![Design image](placeholder.png)
+![Home Page image](dashLink-mockup-01.jpg)
+![Main Dashboard image](dashLink-mockup-03.jpg)
+![Shareable Link "Customer View" image](dashLink-mockup-02.jpg)
 
 Here is an idea of how users will interact with the website.
 
