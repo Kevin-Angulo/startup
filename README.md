@@ -19,10 +19,18 @@ Here is an idea of how users will interact with the website.
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+  actor User as User
+  participant DL as Dash Link
+  participant SL as Shareable Link
+  actor Customer as Customer
+  User ->> DL: Authenticate User
+  DL ->> SL: Create Feedback Link
+  Customer ->> SL: Post Feedback via Link
+  SL ->> DL: Receive Feedback Post from Link
+  DL ->> User: Notify of New Feedback
+  User ->> DL: Manage Feedback (View, Delete, Contact Customer)
 ```
+>I learned how to use mermaid! I think i turned out good 😎
 
 ### Key features
 
