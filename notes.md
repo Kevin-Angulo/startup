@@ -97,3 +97,14 @@ Handling the toggling of the checkboxes was particularly interesting.
   ))}
 </div>
 ```
+
+## 1st Note
+
+This will be my first note and i will commit this to gitHub to see if i did this right
+
+```html
+<main>
+  <h1>H1 Tag</h1>
+  <p>Hello World</p>
+</main>
+```
