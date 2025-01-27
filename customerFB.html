@@ -6,46 +6,55 @@
     <title>DASH-LINK</title>
   </head>
   <header>
+    <img src="assets/icon.png" alt="Dash Link Logo" height="50px" />
     <h1>DashLink</h1>
-    <p>[DASHLINK NAME]</p>
+    <nav>
+      <a href="customerFB.html">[DASHLINK NAME]</a>
+      <a href="/index.html">Create your own DashLink 💪</a>
+    </nav>
   </header>
   <body>
-    <!--Create a Feedback Post Form (future POST API CALL)-->
-    <form>
-      <h2>New Feedback Post</h2>
-      <label>Title :</label>
-      <input type="text" />
-      <br />
-      <label>Comments :</label>
-      <input type="text" />
-      <br />
-      <input type="submit" value="Post" />
-    </form>
-    <p>= = = = = = = = =</p>
-    <!--List of all feedback posts tied to dashlink (backend query request)-->
-    <h2>Past FeedBack Posts</h2>
-    <ul>
+    <main>
+      <!--PLACEHOLDER : API POST CALL *CREATE NEW FEEDBACK POST-->
+      <form>
+        <h2>New Feedback Post</h2>
+        <label>Title :</label>
+        <input type="text" />
+        <br />
+        <label>Comments :</label>
+        <input type="text" />
+        <br />
+        <input type="submit" value="Post" />
+      </form>
+      <p>= = = = = = = = =</p>
+      <!--PLACEHOLDER : DATABASE DYNAMIC DATA OF ALL FEEDBACK POSTS-->
+      <h2>Past FeedBack Posts</h2>
+      <ul>
         <li>
-            <h3>Post 1 Title | 4 Up-Votes</h3>
-            <p>💬 Post Comments</p>
-            <p>📅 Post Date</p>
-            <button>⬆️ Up Vote</button>
-          </li>
-          <li>
-            <h3>Post 2 Title | 2 Up-Votes</h3>
-            <p>💬 Post Comments</p>
-            <p>📅 Post Date</p>
-            <button>⬆️ Up Vote</button>
-          </li>
-          <li>
-            <h3>Post 3 Title | 0 Up-Votes</h3>
-            <p>💬 Post Comments</p>
-            <p>📅 Post Date</p>
-            <button>⬆️ Up Vote</button>
-          </li>
-    </ul>
+          <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of VOTE COUNT-->
+          <h3>Post 1 Title | 4 Up-Votes</h3>
+          <p>💬 Post Comments</p>
+          <p>📅 Post Date</p>
+          <!--PLACEHOLDER : WEBSOCKET Real Time Notifications *INCRIMENT VOTE COUNT-->
+          <button>⬆️ Up Vote</button>
+        </li>
+        <li>
+          <h3>Post 2 Title | 2 Up-Votes</h3>
+          <p>💬 Post Comments</p>
+          <p>📅 Post Date</p>
+          <button>⬆️ Up Vote</button>
+        </li>
+        <li>
+          <h3>Post 3 Title | 0 Up-Votes</h3>
+          <p>💬 Post Comments</p>
+          <p>📅 Post Date</p>
+          <button>⬆️ Up Vote</button>
+        </li>
+      </ul>
+    </main>
   </body>
   <footer>
     <a href="https://github.com/Kevin-Angulo/startup">GitHub</a>
+    <a href="/index.html">Create your own DashLink 💪</a>
   </footer>
 </html>

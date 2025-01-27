@@ -6,28 +6,45 @@
     <title>DASHBOARD</title>
   </head>
   <header>
+    <img src="assets/icon.png" alt="Dash Link Logo" height="50px" />
     <h1>DashLink - DASHBOARD</h1>
-    <a href="/index.html">LOG OUT</a>
+    <nav>
+      <a href="/index.html">LOG OUT</a>
+    </nav>
   </header>
   <body>
-    <!--Create Feedback Form (will make the post api call to create a new dash link)-->
-    <div>
-      <h2>New Dash Link</h2>
-      <form>
-        <label>DashLink Name :</label>
-        <input type="text" />
-        <input type="submit" value="Create" />
-      </form>
-    </div>
-    <!--List of all dashlinks tied to user (backend query request)-->
-    <div>
-      <h2>My DashLinks</h2>
-      <ul>
-        <li><a href="clientFbDashaboard.html">User Dashboard 1</a></li>
-        <li><a href="clientFbDashaboard.html">User Dashboard 2</a></li>
-        <li><a href="clientFbDashaboard.html">User Dashboard 3</a></li>
-      </ul>
-    </div>
+    <main>
+      <!--PLACEHOLDER : API POST CALL *CREATE NEW DASHLINK-->
+      <div>
+        <h2>New Dash Link</h2>
+        <form>
+          <label>DashLink Name :</label>
+          <input type="text" />
+          <input type="submit" value="Create" />
+        </form>
+      </div>
+      <!--PLACEHOLDER : DATABASE DYNAMIC DATA OF DASHLINKS THE USER CREATES-->
+      <div>
+        <h2>My DashLinks</h2>
+        <ul>
+          <li>
+            <a href="clientFbDashaboard.html">DASHLINK Dashboard 1</a>
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <button>🔔 New Posts</button>
+          </li>
+          <li>
+            <a href="clientFbDashaboard.html">DASHLINK Dashboard 2</a>
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <button>🔔 New Posts</button>
+          </li>
+          <li>
+            <a href="clientFbDashaboard.html">DASHLINK Dashboard 3</a>
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <button>🔕 No New Posts</button>
+          </li>
+        </ul>
+      </div>
+    </main>
   </body>
   <footer>
     <a href="https://github.com/Kevin-Angulo/startup">GitHub</a>
