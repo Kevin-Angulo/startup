@@ -1,10 +1,10 @@
 # DASH LINK
 
-- [X] Proper use of Markdown
-- [X] A concise and compelling elevator pitch
-- [X] Description of key features
-- [X] Description of how you will use each technology
-- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -13,9 +13,9 @@ Users can manage all feedback in a single dashboard with real-time notifications
 
 ### Design
 
-![Home Page image](dashLink-mockup-01.jpg)
-![Main Dashboard image](dashLink-mockup-03.jpg)
-![Shareable Link "Customer View" image](dashLink-mockup-02.jpg)
+![Home Page image](assets/dashLink-mockup-01.jpg)
+![Main Dashboard image](assets/dashLink-mockup-03.jpg)
+![Shareable Link "Customer View" image](assets/dashLink-mockup-02.jpg)
 
 Here is an idea of how users will interact with the website.
 
@@ -32,7 +32,8 @@ sequenceDiagram
   DL ->> User: Notify of New Feedback
   User ->> DL: Manage Feedback (View, Delete, Contact Customer)
 ```
->I learned how to use mermaid! I think i turned out good 😎
+
+> I learned how to use mermaid! I think i turned out good 😎
 
 ### Key features
 
@@ -52,5 +53,5 @@ I am going to use the required technologies in the following ways...
 - **CSS** - Desgin and Style of website such as fonts size & style, color scheme, animations, ect.
 - **React** - Responsable for user interaction with all buttons, updating view with ceratin app states, allows for dynamic data to be show to user.
 - **Web Service** - API integration with email provider to send daily notification emails. Google CAPTCHA API to secure forms from spam.
-- **DB/Login** - Database will store user's sharable links and feedback posts. Authentcation will only allow authenicated users to use the service of creating shareblae links. 
-- **WebSocket** - Live notifications for when a new feedback post is made the user will be prompted that a new post was made. 
+- **DB/Login** - Database will store user's sharable links and feedback posts. Authentcation will only allow authenicated users to use the service of creating shareblae links.
+- **WebSocket** - Live notifications for when a new feedback post is made the user will be prompted that a new post was made.
