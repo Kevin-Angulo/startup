@@ -1,1 +1,51 @@
 <!--CUSTOMER FEEDBACK PAGE-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DASH-LINK</title>
+  </head>
+  <header>
+    <h1>DashLink</h1>
+    <p>[DASHLINK NAME]</p>
+  </header>
+  <body>
+    <!--Create a Feedback Post Form (future POST API CALL)-->
+    <form>
+      <h2>New Feedback Post</h2>
+      <label>Title :</label>
+      <input type="text" />
+      <br />
+      <label>Comments :</label>
+      <input type="text" />
+      <br />
+      <input type="submit" value="Post" />
+    </form>
+    <p>= = = = = = = = =</p>
+    <!--List of all feedback posts tied to dashlink (backend query request)-->
+    <h2>Past FeedBack Posts</h2>
+    <ul>
+        <li>
+            <h3>Post 1 Title | 4 Up-Votes</h3>
+            <p>💬 Post Comments</p>
+            <p>📅 Post Date</p>
+            <button>⬆️ Up Vote</button>
+          </li>
+          <li>
+            <h3>Post 2 Title | 2 Up-Votes</h3>
+            <p>💬 Post Comments</p>
+            <p>📅 Post Date</p>
+            <button>⬆️ Up Vote</button>
+          </li>
+          <li>
+            <h3>Post 3 Title | 0 Up-Votes</h3>
+            <p>💬 Post Comments</p>
+            <p>📅 Post Date</p>
+            <button>⬆️ Up Vote</button>
+          </li>
+    </ul>
+  </body>
+  <footer>
+    <a href="https://github.com/Kevin-Angulo/startup">GitHub</a>
+  </footer>
+</html>
