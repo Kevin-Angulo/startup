@@ -56,10 +56,10 @@ I am going to use the required technologies in the following ways...
 - **DB/Login** - Database will store user's sharable links and feedback posts. Authentcation will only allow authenicated users to use the service of creating shareblae links.
 - **WebSocket** - Live notifications for when a new feedback post is made the user will be prompted that a new post was made.
 
-
 ### HTML Deliverable
 
 #### 1. Home Page (index.html)
+
 - **Purpose:** Landing page and login form.
 - **Features:**
   - User login form (placeholder for authentication integration).
@@ -67,6 +67,7 @@ I am going to use the required technologies in the following ways...
   - Navigation links to log in and learn more.
 
 #### 2. Client Dashboard (clientDashboard.html)
+
 - **Purpose:** Main user dashboard to manage feedback links.
 - **Features:**
   - Form to create new feedback links (API POST placeholder).
@@ -74,12 +75,14 @@ I am going to use the required technologies in the following ways...
   - Real-time notifications for new feedback posts (WebSocket placeholder).
 
 #### 3. DashLink Dashboard (dashLinkDashboard.html)
+
 - **Purpose:** Admin view for managing feedback posts on a specific feedback link.
 - **Features:**
   - List of feedback posts with buttons to "Mark as Read" or delete posts (database and API placeholders).
   - Button to generate a downloadable QR code for the feedback link (3rd party API placeholder).
 
 #### 4. Public Feedback Link (publicLink.html)
+
 - **Purpose:** Public feedback form and post list for customers.
 - **Features:**
   - Form for submitting feedback posts (API POST placeholder).
