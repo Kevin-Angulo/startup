@@ -4,10 +4,24 @@
 <html>
   <head>
     <title>DASH-LINK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        plugins: [daisyui],
+        daisyui: {
+          themes: ["dark"],
+        },
+      };
+    </script>
   </head>
   <header>
-    <img src="assets/icon.png" alt="Dash Link Logo" height="50px" />
-    <h1>DashLink</h1>
+    <div>
+      <img src="assets/icon.png" alt="Dash Link Logo" />
+      <h1>DashLink</h1>
+    </div>
   </header>
   <body>
     <nav>
