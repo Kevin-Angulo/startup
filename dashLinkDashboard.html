@@ -1,59 +1,204 @@
 <!--ADMIN VIEW OF FEEDBACK DASHBOARD-->
 
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <title>SUB DASHBOARD</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.4.18/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        plugins: [daisyui],
+        daisyui: {
+          themes: true,
+        },
+      };
+    </script>
   </head>
-  <header>
-    <img src="assets/icon.png" alt="Dash Link Logo" height="50px" />
-    <a href="/clientDashboard.html">&lt Back</a>
-    <h1>[DASHLINK NAME] DASHBOARD</h1>
-    <nav>
-      <a href="publicLink.html">View Public Link</a>
-      <a href="/index.html">LOG OUT</a>
-      <!--PLACEHOLDER : API CALL TO GOQR.me API (GENERATE QR CODE TO FEEDBACK LINK) *3rd Party Services-->
-      <button>Download QR Code</button>
+  <!-- HEADER -->
+  <header class="flex justify-between items-center bg-base-300 px-10 py-5">
+    <div class="flex items-center gap-2">
+      <img class="max-h-10" src="assets/icon.png" alt="Dash Link Logo" />
+      <h1 class="text-4xl font-bold">DashLink</h1>
+    </div>
+    <nav class="font-bold flex gap-4">
+      <a href="/clientDashboard.html" class="btn btn-outline btn-sm">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-3"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+          />
+        </svg>
+
+        Back</a
+      >
     </nav>
   </header>
-  <hr />
+
   <body>
-    <main>
+    <main class="px-10 py-5">
       <!--PLACEHOLDER : DYNAMIC DATA FROM DATABASE OF PUBLIC FEEDBACK POSTS TIED TO THE USER'S DASHLINK-->
-      <h2>FeedBack Posts</h2>
+      <h2 class="text-4xl font-bold text-center mb-5">
+        [board.name] Feedback Posts
+      </h2>
+      <!-- QR CODE & Link Buttons -->
+      <div class="flex mx-auto max-w-sm justify-evenly mb-10">
+        <a class="btn btn-outline btn-secondary font-bold" href="/publicLink.html"
+          >Copy
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="size-4"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8.914 6.025a.75.75 0 0 1 1.06 0 3.5 3.5 0 0 1 0 4.95l-2 2a3.5 3.5 0 0 1-5.396-4.402.75.75 0 0 1 1.251.827 2 2 0 0 0 3.085 2.514l2-2a2 2 0 0 0 0-2.828.75.75 0 0 1 0-1.06Z"
+              clip-rule="evenodd"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M7.086 9.975a.75.75 0 0 1-1.06 0 3.5 3.5 0 0 1 0-4.95l2-2a3.5 3.5 0 0 1 5.396 4.402.75.75 0 0 1-1.251-.827 2 2 0 0 0-3.085-2.514l-2 2a2 2 0 0 0 0 2.828.75.75 0 0 1 0 1.06Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </a>
+        <a class="btn btn-outline btn-ghost font-bold" href="/publicLink.html"
+          >Download
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            class="size-4"
+          >
+            <path d="M4.75 4.25a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z" />
+            <path
+              fill-rule="evenodd"
+              d="M2 3.5A1.5 1.5 0 0 1 3.5 2H6a1.5 1.5 0 0 1 1.5 1.5V6A1.5 1.5 0 0 1 6 7.5H3.5A1.5 1.5 0 0 1 2 6V3.5Zm1.5 0H6V6H3.5V3.5Z"
+              clip-rule="evenodd"
+            />
+            <path d="M4.25 11.25a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0Z" />
+            <path
+              fill-rule="evenodd"
+              d="M2 10a1.5 1.5 0 0 1 1.5-1.5H6A1.5 1.5 0 0 1 7.5 10v2.5A1.5 1.5 0 0 1 6 14H3.5A1.5 1.5 0 0 1 2 12.5V10Zm1.5 2.5V10H6v2.5H3.5Z"
+              clip-rule="evenodd"
+            />
+            <path d="M11.25 4.25a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Z" />
+            <path
+              fill-rule="evenodd"
+              d="M10 2a1.5 1.5 0 0 0-1.5 1.5V6A1.5 1.5 0 0 0 10 7.5h2.5A1.5 1.5 0 0 0 14 6V3.5A1.5 1.5 0 0 0 12.5 2H10Zm2.5 1.5H10V6h2.5V3.5Z"
+              clip-rule="evenodd"
+            />
+            <path
+              d="M8.5 9.417a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM8.5 13.083a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM13.083 8.5a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833ZM12.166 13.084a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM11.25 10.333a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833Z"
+            />
+          </svg>
+        </a>
+      </div>
       <ul>
-        <li>
-          <h3>Post 1 Title</h3>
-          <p>💬 Post Comments</p>
-          <p>📅 Post Date</p>
-          <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of VOTE COUNT-->
-          <p>⬆️ Post Up Votes</p>
-          <button>✅ Mark as Resolved</button>
-          <!--PLACEHOLDER : API DELETE CALL *DELETE FEEDBACK POST-->
-          <button>🗑️ Delete</button>
+        <li class="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
+          <div class="card-body items-left text-left">
+            <div class="flex justify-between">
+              <h2 class="card-title">[post 1 title]</h2>
+              <div class="indicator">
+                <span class="indicator-item badge badge-secondary">15</span>
+                <button class="btn btn-sm">Up Vote ⬆️</button>
+              </div>
+            </div>
+            <p>[post date]</p>
+            <p>
+              [Comment] Lorem ipsum odor amet, consectetuer adipiscing elit.
+              Libero aliquam curabitur amet ipsum interdum! Libero facilisi
+              tempor sodales vel elit. Quisque orci sagittis luctus blandit diam
+              adipiscing.
+            </p>
+            <div class="card-actions justify-between mt-5">
+              <button class="btn btn-primary btn-outline">
+                Mark as Resolved
+              </button>
+              <button class="btn btn-error btn-outline">Delete</button>
+            </div>
+          </div>
         </li>
-        <li>
-          <h3>Post 2 Title</h3>
-          <p>💬 Post Comments</p>
-          <p>📅 Post Date</p>
-          <p>⬆️ Post Up Votes</p>
-          <button>✅ Mark as Resolved</button>
-          <button>🗑️ Delete</button>
+
+        <li class="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
+          <div class="card-body items-left text-left">
+            <div class="flex justify-between">
+              <h2 class="card-title">404 Error | Contact Page</h2>
+              <div class="indicator">
+                <span class="indicator-item badge badge-secondary">13</span>
+                <button class="btn btn-sm">Up Vote ⬆️</button>
+              </div>
+            </div>
+            <p>September 30th 2024</p>
+            <p>
+              Your website keeps returning a 404 error when I try to access the
+              contact page. I Think there is some time of href error going on or
+              the contact page is not properly set up.
+            </p>
+            <div class="card-actions justify-between mt-5">
+              <button class="btn btn-primary btn-outline">
+                Mark as Resolved
+              </button>
+              <button class="btn btn-error btn-outline">Delete</button>
+            </div>
+          </div>
         </li>
-        <li>
-          <h3>Post 3 Title</h3>
-          <p>💬 Post Comments</p>
-          <p>📅 Post Date</p>
-          <p>⬆️ Post Up Votes</p>
-          <button>✅ Mark as Resolved</button>
-          <button>🗑️ Delete</button>
+
+        <li class="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
+          <div class="card-body items-left text-left">
+            <div class="flex justify-between">
+              <h2 class="card-title">[post 3 title]</h2>
+              <div class="indicator">
+                <span class="indicator-item badge badge-secondary">9</span>
+                <button class="btn btn-sm">Up Vote ⬆️</button>
+              </div>
+            </div>
+            <p>[post date]</p>
+            <p>
+              [Comment] Lorem ipsum odor amet, consectetuer adipiscing elit.
+              Libero aliquam curabitur amet ipsum interdum! Libero facilisi
+              tempor sodales vel elit. Quisque orci sagittis luctus blandit diam
+              adipiscing.
+            </p>
+            <div class="card-actions justify-between mt-5">
+              <button class="btn btn-primary btn-outline">
+                Mark as Resolved
+              </button>
+              <button class="btn btn-error btn-outline">Delete</button>
+            </div>
+          </div>
         </li>
       </ul>
     </main>
   </body>
-  <hr />
-  <footer>
-    <p>CS-260 Project by : Kevin Angulo</p>
-    <a href="https://github.com/Kevin-Angulo/startup">GitHub</a>
+
+  <footer class="bg-base-300 opacity-55">
+    <h2 class="text-9xl font-extrabold text-center py-12 max-sm:text-6xl">
+      DashLink
+    </h2>
+    <p class="text-sm font-light text-center">
+      CS-260 Project by : Kevin Angulo
+    </p>
+    <a
+      class="text-md font-semibold text-center btn btn-link flex items-center"
+      href="https://github.com/Kevin-Angulo/startup"
+      >GitHub Source</a
+    >
   </footer>
 </html>
