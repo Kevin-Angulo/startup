@@ -1,56 +1,99 @@
 <!--MAIN DASHBOARD PAGE-->
 
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <title>DASHBOARD</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.4.18/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        plugins: [daisyui],
+        daisyui: {
+          themes: true,
+        },
+      };
+    </script>
   </head>
-  <header>
-    <img src="assets/icon.png" alt="Dash Link Logo" height="50px" />
-    <h1>DashLink - DASHBOARD</h1>
-    <nav>
-      <a href="/index.html">LOG OUT</a>
+  <!-- HEADER -->
+  <header class="flex justify-between items-center bg-base-300 px-10 py-5">
+    <div class="flex items-center gap-2">
+      <img class="max-h-10" src="assets/icon.png" alt="Dash Link Logo" />
+      <h1 class="text-4xl font-bold">DashLink</h1>
+    </div>
+    <nav class="font-bold flex gap-4">
+      <a href="/index.html" class="btn btn-outline btn-sm">LOG OUT</a>
     </nav>
   </header>
-  <hr />
+
   <body>
-    <main>
+    <main class="px-10 py-5">
+      <!-- Hero Title -->
+      <h2 class="text-4xl font-bold text-center pb-10">
+        DashLink Admin Dashboard
+      </h2>
       <!--PLACEHOLDER : API POST CALL *CREATE NEW DASHLINK-->
-      <div>
-        <h2>New Dash Link</h2>
-        <form>
-          <label>DashLink Name :</label>
-          <input type="text" />
-          <input type="submit" value="Create" />
-        </form>
+      <div class="card bg-primary text-primary-content w-96 m-auto">
+        <div class="card-body">
+          <h2 class="card-title">New DashLink</h2>
+          <input
+            type="text"
+            placeholder="DashLink Name..."
+            class="input input-bordered w-full max-w-xs"
+          />
+          <div class="card-actions justify-end">
+            <button class="btn">Create</button>
+          </div>
+        </div>
       </div>
-      <hr />
+
       <!--PLACEHOLDER : DATABASE DYNAMIC DATA OF DASHLINKS THE USER CREATES-->
-      <div>
-        <h2>My DashLinks</h2>
-        <ul>
-          <li>
-            <a href="dashLinkDashboard.html">DASHLINK Dashboard 1</a>
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-2xl font-semibold text-center my-10 underline">My DashLinks</h2>
+        <ul class="text-lg font-bold">
+          
+          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+            <a href="dashLinkDashboard.html">DASHLINK 1</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <button>🔔 New Posts</button>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔔 New Posts</a>
           </li>
-          <li>
-            <a href="dashLinkDashboard.html">DASHLINK Dashboard 2</a>
+
+          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+            <a href="dashLinkDashboard.html">DASHLINK 2</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <button>🔔 New Posts</button>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔔 New Posts</a>
           </li>
-          <li>
-            <a href="dashLinkDashboard.html">DASHLINK Dashboard 3</a>
+
+          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+            <a href="dashLinkDashboard.html">DASHLINK 3</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <button>🔕 No New Posts</button>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔕 No New Posts</a>
           </li>
+
+          
         </ul>
       </div>
     </main>
   </body>
-  <hr />
-  <footer>
-    <p>CS-260 Project by : Kevin Angulo</p>
-    <a href="https://github.com/Kevin-Angulo/startup">GitHub</a>
+
+  <footer class="bg-base-300 opacity-55">
+    <h2 class="text-9xl font-extrabold text-center py-12 max-sm:text-6xl">
+      DashLink
+    </h2>
+    <p class="text-sm font-light text-center">
+      CS-260 Project by : Kevin Angulo
+    </p>
+    <a
+      class="text-md font-semibold text-center btn btn-link flex items-center"
+      href="https://github.com/Kevin-Angulo/startup"
+      >GitHub Source</a
+    >
   </footer>
 </html>
