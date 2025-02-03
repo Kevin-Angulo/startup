@@ -1,9 +1,14 @@
 <!--INDEX PAGE AKA HOME PAGE AKA LOGIN IN PAGE-->
 
 <!DOCTYPE html>
-<html>
+<html data-theme="synthwave">
   <head>
     <title>DASH-LINK</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.4.18/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -12,28 +17,23 @@
         },
         plugins: [daisyui],
         daisyui: {
-          themes: ["dark"],
+          themes: true,
         },
       };
     </script>
   </head>
-  <header>
-    <div>
-      <img src="assets/icon.png" alt="Dash Link Logo" />
-      <h1>DashLink</h1>
+  <header class="flex justify-between items-center bg-base-300 px-4 py-5">
+    <div class="flex items-center gap-2">
+      <img class="max-h-10" src="assets/icon.png" alt="Dash Link Logo" />
+      <h1 class="text-4xl font-bold">DashLink</h1>
     </div>
+    <nav class="font-bold flex gap-4">
+      <a href="index.html" class="btn btn-primary btn-sm round">SIGN UP</a>
+      <a href="index.html" class="btn btn-secondary btn-sm">LEARN</a>
+    </nav>
   </header>
   <body>
-    <nav>
-      <ul>
-        <li>
-          <a href="index.html">SIGN UP</a>
-        </li>
-        <li>
-          <a href="index.html">LEARN</a>
-        </li>
-      </ul>
-    </nav>
+    
     <hr />
     <main>
       <!--PLACEHOLDER : USER AUTHENTICATION-->
