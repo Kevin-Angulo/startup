@@ -74,7 +74,37 @@ My IP address is: 3.223.76.217
 
 ## CSS
 
-PENDING
+1. **Tailwind & DaisyUI Setup**  
+   - Included Tailwind CDN and DaisyUI for additional pre-styled components.
+
+2. **Responsive Layouts**  
+   - Used `max-sm`, `max-md` for mobile-friendly adjustments.
+
+3. **Theming with DaisyUI**  
+   - Applied `data-theme="cupcake"` for a predefined color scheme.
+
+4. **Navigation Bar Styling**  
+   - Used `flex justify-between items-center bg-base-300 px-10 py-5` for structured spacing.
+
+5. **Cards & UI Components**  
+   - Implemented DaisyUI’s `card` component for feedback posts and dashboards.
+
+6. **Form Styling**  
+   - Used `input input-bordered` for uniform input fields.
+
+7. **Buttons & Interactive Elements**  
+   - Styled with `btn btn-primary`, `btn-outline`, and `btn-sm` for user actions.
+
+8. **Typography Adjustments**  
+   - Applied `text-4xl font-bold` for titles and `text-sm font-light` for minor text.
+
+9. **Grid & Flexbox Layouts**  
+   - Used `grid grid-cols-3` and `flex justify-between` for consistent positioning.
+
+10. **Hover & Interactive Effects**  
+   - Implemented `hover:text-primary` for smooth transitions on links/buttons.
+
+---
 
 ## React Part 1: Routing
 

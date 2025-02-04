@@ -1,4 +1,6 @@
 # DASH LINK
+[Simon](https://simon.pro-dash-link.click)
+[Start-Up](https://startup.pro-dash-link.click)
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
