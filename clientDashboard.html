@@ -4,7 +4,7 @@
 <html data-theme="cupcake">
   <head>
     <title>DASHBOARD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@4.4.18/dist/full.css"
       rel="stylesheet"
@@ -24,13 +24,19 @@
     </script>
   </head>
   <!-- HEADER -->
-  <header class="flex justify-between items-center bg-base-300 px-10 py-5">
-    <div class="flex items-center gap-2">
-      <img class="max-h-10" src="assets/icon.png" alt="Dash Link Logo" />
-      <h1 class="text-4xl font-bold">DashLink</h1>
+  <header
+    class="flex justify-between items-center bg-base-300 px-10 py-5 max-sm:px-5"
+  >
+    <div class="flex items-center gap-1">
+      <img
+        class="max-h-10 max-sm:max-h-6"
+        src="assets/icon.png"
+        alt="Dash Link Logo"
+      />
+      <h1 class="text-4xl font-bold max-sm:text-xl">DashLink</h1>
     </div>
     <nav class="font-bold flex gap-4">
-      <a href="/index.html" class="btn btn-outline btn-sm">LOG OUT</a>
+      <a href="/clientDashboard.html" class="btn btn-outline btn-sm">SIGN UP</a>
     </nav>
   </header>
 
@@ -57,28 +63,39 @@
 
       <!--PLACEHOLDER : DATABASE DYNAMIC DATA OF DASHLINKS THE USER CREATES-->
       <div class="max-w-2xl mx-auto">
-        <h2 class="text-2xl font-semibold text-center my-10 underline">My DashLinks</h2>
+        <h2 class="text-2xl font-semibold text-center my-10 underline">
+          My DashLinks
+        </h2>
         <ul class="text-lg font-bold">
-          
-          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+          <li
+            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
+          >
             <a href="dashLinkDashboard.html">DASHLINK 1</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔔 New Posts</a>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
+              >🔔 New Posts</a
+            >
           </li>
 
-          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+          <li
+            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
+          >
             <a href="dashLinkDashboard.html">DASHLINK 2</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔔 New Posts</a>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
+              >🔔 New Posts</a
+            >
           </li>
 
-          <li class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500">
+          <li
+            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
+          >
             <a href="dashLinkDashboard.html">DASHLINK 3</a>
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html">🔕 No New Posts</a>
+            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
+              >🔕 No New Posts</a
+            >
           </li>
-
-          
         </ul>
       </div>
     </main>
