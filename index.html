@@ -77,15 +77,14 @@
         </div>
       </form>
 
-      <!-- WATCH DEMO CARD -->
+      <!-- Div of "How it Works and Watch Demo" [not for mobile] -->
       <div
-        class="card card-side bg-base-300 shadow-xl mt-10 max-w-4xl mx-auto max-sm:mt-5"
+        class="card card-side bg-base-300 shadow-xl mt-10 max-w-4xl mx-auto max-md:hidden"
       >
         <figure class="w-96">
           <img src="/assets/styled_appPreview.png" alt="DashLink Demo Image" />
         </figure>
-
-        <!-- Div of "How it Works and Watch Demo" -->
+        <!-- Div of "How it Works" -->
         <div class="card-body flex flex-col justify-between">
           <!-- How It Works Section -->
           <section>
@@ -113,6 +112,41 @@
           </div>
         </div>
       </div>
+
+      <!-- Div of "How it Works and Watch Demo" [for mobile] -->
+      <div
+        class="card bg-base-300 shadow-xl mt-10 w-full mx-auto lg:hidden md:hidden"
+      >
+        <!-- Div of "How it Works" -->
+        <div class="card-body flex flex-col justify-between">
+          <!-- How It Works Section -->
+          <section>
+            <h3
+              class="font-semibold mb-3 text-center text-3xl"
+            >
+              How it Works 🤔
+            </h3>
+            <div
+              class="text-lg font-bold flex flex-col gap-2"
+            >
+              <p class="text-primary">1️⃣ Create a Dash Link</p>
+              <p>2️⃣ Share the Dash Link with your Clients</p>
+              <p class="text-primary">3️⃣ Collect Feedback</p>
+              <p>4️⃣ Improve your business</p>
+            </div>
+          </section>
+          <!-- Watch Demo Div -->
+          <div class="card-actions flex justify-between pt-7">
+            <div>
+              <h2 class="card-title text-neutral">See DashLink work in action!</h2>
+              <p>Click to watch on our Demo.</p>
+            </div>
+            <button class="btn btn-accent btn-sm">Watch</button>
+          </div>
+        </div>
+      </div>
+
+
     </main>
   </body>
 
