@@ -36,18 +36,18 @@
       <h1 class="text-4xl font-bold max-sm:text-xl">DashLink</h1>
     </div>
     <nav class="font-bold flex gap-4">
-      <a href="/clientDashboard.html" class="btn btn-outline btn-sm">SIGN UP</a>
+      <a href="/index.html" class="btn btn-outline btn-sm">LOG OUT</a>
     </nav>
   </header>
 
   <body>
     <main class="px-10 py-5">
       <!-- Hero Title -->
-      <h2 class="text-4xl font-bold text-center pb-10">
+      <h2 class="text-4xl font-bold text-center pb-10 max-sm:text-3xl">
         DashLink Admin Dashboard
       </h2>
       <!--PLACEHOLDER : API POST CALL *CREATE NEW DASHLINK-->
-      <div class="card bg-primary text-primary-content w-96 m-auto">
+      <div class="card bg-primary text-primary-content max-w-96 m-auto">
         <div class="card-body">
           <h2 class="card-title">New DashLink</h2>
           <input
@@ -62,39 +62,42 @@
       </div>
 
       <!--PLACEHOLDER : DATABASE DYNAMIC DATA OF DASHLINKS THE USER CREATES-->
-      <div class="max-w-2xl mx-auto">
+      <div class="flex flex-col items-center max-w-3xl mx-auto">
         <h2 class="text-2xl font-semibold text-center my-10 underline">
           My DashLinks
         </h2>
-        <ul class="text-lg font-bold">
-          <li
-            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
-          >
-            <a href="dashLinkDashboard.html">DASHLINK 1</a>
-            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
-              >🔔 New Posts</a
-            >
-          </li>
+        <ul class="grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-3 gap-5 place-items-center text-lg font-bold">
 
-          <li
-            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
-          >
-            <a href="dashLinkDashboard.html">DASHLINK 2</a>
+          <div class="indicator">
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
-              >🔔 New Posts</a
-            >
-          </li>
+            <span class="indicator-item badge badge-secondary">12</span>
+            <a href="dashLinkDashboard.html" class="btn">[dashlink.name]</a>
+          </div>
 
-          <li
-            class="flex justify-between items-center bg-base-300 py-3 px-6 rounded-3xl my-5 hover:bg-primary duration-500"
-          >
-            <a href="dashLinkDashboard.html">DASHLINK 3</a>
+          <div class="indicator">
             <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
-            <a class="btn btn-outline btn-sm" href="/dashLinkDashboard.html"
-              >🔕 No New Posts</a
-            >
+            <span class="indicator-item badge badge-secondary">5</span>
+            <a href="dashLinkDashboard.html" class="btn">My Dashlink</a>
+          </div>
+
+          <div class="indicator">
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <span class="indicator-item badge badge-secondary">0</span>
+            <a href="dashLinkDashboard.html" class="btn">DashLink 3</a>
+          </div>
+
+          <div class="indicator">
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <span class="indicator-item badge badge-secondary">23</span>
+            <a href="dashLinkDashboard.html" class="btn">[dashlink.name]</a>
+          </div>
+
+          <div class="indicator">
+            <!--PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts-->
+            <span class="indicator-item badge badge-secondary">2</span>
+            <a href="dashLinkDashboard.html" class="btn">Test 123</a>
+          </div>
+
           </li>
         </ul>
       </div>
