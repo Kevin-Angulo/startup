@@ -1,4 +1,5 @@
 # DASH LINK
+
 [Simon](https://simon.pro-dash-link.click)
 [Start-Up](https://startup.pro-dash-link.click)
 
@@ -87,5 +88,50 @@ I am going to use the required technologies in the following ways...
 
 - **Purpose:** Public feedback form and post list for customers.
 - **Features:**
+
   - Form for submitting feedback posts (API POST placeholder).
   - List of feedback posts with upvote buttons (database and WebSocket placeholders).
+
+  ### CSS Deliverable
+
+1. **Properly styled CSS header, footer, and main content body**
+   - Header
+      a.
+   - Applied `data-theme="cupcake"` for a predefined color scheme.
+   - Used `flex justify-between items-center bg-base-300 px-10 py-5` for structured spacing.
+
+2. **Responsive Layouts**
+
+   - Used `max-sm`, `max-md` for mobile-friendly adjustments.
+
+3. **Theming with DaisyUI**
+
+
+
+4. **Navigation Bar Styling**
+
+
+
+5. **Cards & UI Components**
+
+   - Implemented DaisyUI’s `card` component for feedback posts and dashboards.
+
+6. **Form Styling**
+
+   - Used `input input-bordered` for uniform input fields.
+
+7. **Buttons & Interactive Elements**
+
+   - Styled with `btn btn-primary`, `btn-outline`, and `btn-sm` for user actions.
+
+8. **Typography Adjustments**
+
+   - Applied `text-4xl font-bold` for titles and `text-sm font-light` for minor text.
+
+9. **Grid & Flexbox Layouts**
+
+   - Used `grid grid-cols-3` and `flex justify-between` for consistent positioning.
+
+10. **Hover & Interactive Effects**
+
+- Implemented `hover:text-primary` for smooth transitions on links/buttons.
