@@ -45,7 +45,7 @@ export function Login() {
       {/* Div of "How it Works and Watch Demo" [not for mobile] */}
       <div className="card card-side bg-base-300 shadow-xl mt-10 max-w-4xl mx-auto max-md:hidden">
         <figure className="w-96">
-          <img src="/assets/styled_appPreview.png" alt="DashLink Demo Image" />
+          <img src="styled_appPreview.png" alt="DashLink Demo Image" />
         </figure>
         {/* Div of "How it Works" */}
         <div className="card-body flex flex-col justify-between">

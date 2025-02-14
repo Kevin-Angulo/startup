@@ -15,7 +15,7 @@ export default function App() {
           <NavLink to="/" className="flex items-center gap-1">
             <img
               className="max-h-10 max-sm:max-h-6"
-              src="assets/icon.png"
+              src="icon.png"
               alt="Dash Link Logo"
             />
             <h1 className="text-4xl font-bold max-sm:text-xl">DashLink</h1>
