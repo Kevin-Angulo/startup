@@ -22,17 +22,17 @@ export default function App() {
           </NavLink>
           <nav className="font-bold flex gap-4">
             <NavLink to="clientDashboard" className="btn btn-outline btn-sm">
-                DASHBORD   
+              DASHBORD
             </NavLink>
           </nav>
         </header>
 
         <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/clientDashboard" element={<ClientDashboard />} />
-            <Route path="/publicLink" element={<PublicLink />} />
-            <Route path="/dashlinkDashboard" element={<DashlinkDashboard />} />
-            <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/clientDashboard" element={<ClientDashboard />} />
+          <Route path="/publicLink" element={<PublicLink />} />
+          <Route path="/dashlinkDashboard" element={<DashlinkDashboard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <footer className="bg-base-300 opacity-55 mt-10">
@@ -42,6 +42,7 @@ export default function App() {
           <p className="text-sm font-light text-center">
             CS-260 Project by : Kevin Angulo
           </p>
+
           <a
             className="text-md font-semibold text-center btn btn-link flex items-center"
             href="https://github.com/Kevin-Angulo/startup"
@@ -55,6 +56,9 @@ export default function App() {
 }
 
 function NotFound() {
-    return <main className="py-12 bg-secondary text-center">404: Return to sender. Address unknown.</main>;
-  }
-
+  return (
+    <main className="py-12 bg-secondary text-center">
+      404: Return to sender. Address unknown.
+    </main>
+  );
+}
