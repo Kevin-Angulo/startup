@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { NavLink } from 'react-router-dom';
 
 export function ClientDashboard() {
+  const [dashlinkName, setDashlinkName] = React.useState("");
+  const [dashlinks, setDashlinks] = React.useState([]);
+
+  // Load from local storage on page load
+  useEffect(() => {
+    const stored = localStorage.getItem('dashlinks');
+    if (stored) {
+      setDashlinks(JSON.parse(stored));
+    }
+  }, []);
+
+  // Save to local storage whenever dashlinks change
+  useEffect(() => {
+    localStorage.setItem('dashlinks', JSON.stringify(dashlinks));
+  }, [dashlinks]);
+
+  const createDashLink = () => {
+    if (!dashlinkName) return;
+
+    const newDashlink = {
+      name : dashlinkName,
+      unreadCount : Math.floor(Math.random() * 10), // Placeholder for unread count
+    };
+
+    setDashlinks([...dashlinks, newDashlink]);
+    setDashlinkName(""); // Clear input field
+  };
+
   return (
     <main className="px-10 py-5">
        {/* Hero Title  */}
@@ -14,11 +42,17 @@ export function ClientDashboard() {
           <h2 className="card-title">New DashLink</h2>
           <input
             type="text"
+            value={dashlinkName}
+            onChange={(e) => setDashlinkName(e.target.value)}
             placeholder="DashLink Name..."
             className="input input-bordered w-full max-w-xs"
           />
           <div className="card-actions justify-end">
-            <button className="btn">Create</button>
+            <button
+            className="btn"
+            onClick={createDashLink}
+            >Create
+            </button>
           </div>
         </div>
       </div>
