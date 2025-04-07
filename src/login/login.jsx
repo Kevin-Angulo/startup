@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  function handleLogin(e) {
+    e.preventDefault();
+    // Placeholder for authentication logic
+    if (!email || !password) {
+      // Simulate Error Validation
+      alert("Please enter valid credentials");
+      return;
+    }
+
+    //Store in Local Storage (User Information)
+    localStorage.setItem('userEmail', JSON.stringify(email));
+    localStorage.setItem('userPassword', JSON.stringify(password));
+
+    // Redirect to clientDashboard
+    navigate("/clientDashboard");
+  }
+
   return (
     <main className="items-center px-10 py-5">
       {/* Hero Title */}
@@ -19,25 +41,26 @@ export function Login() {
               type="text"
               className="w-full bg-base-100"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <label className="input input-bordered flex items-center gap-2">
             <input
               type="password"
               className="w-full bg-base-100"
-              value="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <div className="card-actions justify-between mt-4">
-            <NavLink className="btn btn-sm btn-primary" to="clientDashboard">
-              SIGN IN
-            </NavLink>
-            <NavLink
-              className="btn btn-sm btn-outline btn-primary"
-              to="clientDashboard"
+            <button
+            className="btn btn-sm btn-primary"
+            onClick={handleLogin}
             >
-              SIGN UP
-            </NavLink>
+            SIGN IN
+            </button>
           </div>
         </div>
       </form>
