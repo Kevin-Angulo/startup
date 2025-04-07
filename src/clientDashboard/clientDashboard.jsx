@@ -22,6 +22,7 @@ export function ClientDashboard() {
     if (!dashlinkName) return;
 
     const newDashlink = {
+      id : Date.now(), // Unique ID based on timestamp *for mapping later on list
       name : dashlinkName,
       unreadCount : Math.floor(Math.random() * 10), // Placeholder for unread count
     };
@@ -42,7 +43,7 @@ export function ClientDashboard() {
           <h2 className="card-title">New DashLink</h2>
           <input
             type="text"
-            value={dashlinkName}
+            value={dashlinkName.trim()}
             onChange={(e) => setDashlinkName(e.target.value)}
             placeholder="DashLink Name..."
             className="input input-bordered w-full max-w-xs"
@@ -63,36 +64,13 @@ export function ClientDashboard() {
           My DashLinks
         </h2>
         <ul className="grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-3 gap-5 place-items-center text-lg font-bold">
-
-          <div className="indicator">
+          {dashlinks.map((dashlink) => (
+            <div key={dashlinkName.id} className="indicator">
             {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">12</span>
-            <NavLink to="/dashlinkDashboard" className="btn">[dashlink.name]</NavLink>
-            </div>
-
-            <div className="indicator">
-            {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">5</span>
-            <NavLink to="/dashlinkDashboard" className="btn">My Dashlink</NavLink>
+            <span className="indicator-item badge badge-secondary">{dashlink.unreadCount}</span>
+            <NavLink to="/dashlinkDashboard" className="btn">{dashlink.name}</NavLink>
           </div>
-
-          <div className="indicator">
-            {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">0</span>
-            <NavLink to="/dashlinkDashboard" className="btn">DashLink 3</NavLink>
-          </div>
-
-          <div className="indicator">
-            {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">23</span>
-            <NavLink to="/dashlinkDashboard" className="btn">[dashlink.name]</NavLink>
-          </div>
-
-          <div className="indicator">
-            {/*PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">2</span>
-            <NavLink to="/dashlinkDashboard" className="btn">Test 123</NavLink>
-          </div>
+        ))}
         </ul>
       </div>
     </main>
