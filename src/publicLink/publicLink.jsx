@@ -1,12 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 export function PublicLink() {
+
+  const [posts, setPosts] = useState([]);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+
+  //Posts from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem('publicPosts');
+    const loadedPosts = stored ? JSON.parse(stored) : [];
+    setPosts(loadedPosts);
+  }, []);
+
+  //Handle Functions for New Post and Upvote
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newPost = {
+      id : Date.now(),
+      title : postTitle,
+      body : postBody,
+      votes : 0,
+      date : new Date().toLocaleDateString(),
+    };
+
+    const updated = [newPost, ...posts];
+    setPosts(updated);
+    localStorage.setItem('publicPosts', JSON.stringify(updated));
+
+    setPostTitle("");
+    setPostBody("");
+
+  };
+
+  const handleUpvote = (id) => {
+    const updated = posts.map(post => 
+      post.id === id ? { ...post, votes: post.votes + 1 } : post
+    );
+    updated.sort((a, b) => b.votes - a.votes);
+    setPosts(updated);
+    localStorage.setItem('publicPosts', JSON.stringify(updated));
+  };
+
+  
+
+
   return (
     <main className="px-10 py-5">
       {/* <!-- Hero Title --> */}
-      <h2 className="text-4xl font-bold text-center max-sm:text-2xl">[board.name]</h2>
+      <h2 className="text-4xl font-bold text-center max-sm:text-2xl">Leave Feedback</h2>
       <NavLink
         to="/"
         className="flex justify-center text-sm font-bold text-center pb-10 btn btn-link text-neutral"
@@ -16,16 +61,24 @@ export function PublicLink() {
 
       {/* <!--PLACEHOLDER : API POST CALL *CREATE NEW DASHLINK--> */}
       <div className="card bg-primary text-primary-content max-w-xl m-auto mb-10">
-        <form className="card-body">
+        <form
+        className="card-body"
+        onSubmit={handleSubmit}>
           <h2 className="card-title">New Feedback Post</h2>
           <input
             type="text"
-            placeholder="Short Description..."
+            placeholder="Title..."
+            value={postTitle}
+            onChange={(e) => setPostTitle(e.target.value)}
+            required
             className="input input-bordered w-full max-w-xs mb-4"
           />
           <input
             type="text"
             placeholder="Feedback..."
+            value={postBody}
+            onChange={(e) => setPostBody(e.target.value)}
+            required
             className="input input-bordered w-full max-w-s"
           />
           {/* <!--PLACEHOLDER : API POST CALL *CREATE NEW FEEDBACK POST--> */}
