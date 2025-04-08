@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export function DashlinkDashboard() {
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      title: '404 Error',
+      date: 'September 30th 2024',
+      message: 'Your website keeps returning a 404 error when I try to access the contact page. I Think there is some time of to error going on or the contact page is not properly set up.',
+      upvotes: 13,
+      resolved: false,
+    },
+    {
+      id: 2,
+      title: 'Dark Mode Request',
+      date: 'Oct 1st 2024',
+      message: 'I would love to see a dark mode version or toggle button for your website. I think that would be a great ui feature!',
+      upvotes: 19,
+      resolved: false,
+    },
+  ]);
+
   return (
     <main className="px-10 py-5">
       <nav className="font-bold flex gap-4 mb-7">
