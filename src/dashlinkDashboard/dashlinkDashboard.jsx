@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export function DashlinkDashboard() {
+  const location = useLocation();
+  const dashlinkName = location.state?.name || "Your DashLink";
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -60,7 +63,7 @@ export function DashlinkDashboard() {
       </nav>
       {/* <!--PLACEHOLDER : DYNAMIC DATA FROM DATABASE OF PUBLIC FEEDBACK POSTS TIED TO THE USER'S DASHLINK--> */}
       <h2 className="text-4xl font-bold text-center mb-5">
-        [board.name] Feedback Posts
+        {dashlinkName} Feedback Posts
       </h2>
       {/* <!-- QR CODE & Link Buttons --> */}
       <div className="flex mx-auto max-w-sm justify-evenly mb-10">

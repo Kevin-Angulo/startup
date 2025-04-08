@@ -68,7 +68,11 @@ export function ClientDashboard() {
             <div key={dashlinkName.id} className="indicator">
             {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
             <span className="indicator-item badge badge-secondary">{dashlink.unreadCount}</span>
-            <NavLink to="/dashlinkDashboard" className="btn">{dashlink.name}</NavLink>
+            <NavLink
+            to="/dashlinkDashboard"
+            state={{ name: dashlink.name }}
+            className="btn"
+            >{dashlink.name}</NavLink>
           </div>
         ))}
         </ul>
