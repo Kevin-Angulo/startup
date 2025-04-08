@@ -5,6 +5,7 @@ export function PublicLink() {
   const [posts, setPosts] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
+  const [isHuman, setIsHuman] = useState(false);
 
   //Posts from localStorage
   useEffect(() => {
@@ -16,6 +17,12 @@ export function PublicLink() {
   //Handle Functions for New Post and Upvote
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //Captcha Validation
+    if (!isHuman) {
+      alert("Please confirm you are not a robot.");
+      return;
+    }
 
     const newPost = {
       id: Date.now(),
@@ -31,6 +38,7 @@ export function PublicLink() {
 
     setPostTitle("");
     setPostBody("");
+    setIsHuman(false);
   };
 
   const handleUpvote = (id) => {
@@ -80,9 +88,14 @@ export function PublicLink() {
           <div className="flex flex-col card-actions justify-start mt-5">
             <div className="flex items-center gap-3 mb-3">
               <p className="font-bold">I am a robot</p>
-              <input type="checkbox" className="toggle" checked="unchecked" />
+              <input
+              type="checkbox"
+              className="toggle"
+              checked={!isHuman}
+              onChange={() => setIsHuman(!isHuman)} />
             </div>
-            <button className="btn">Send Feedback</button>
+            <button
+            className="btn">Send Feedback</button>
           </div>
         </form>
       </div>
