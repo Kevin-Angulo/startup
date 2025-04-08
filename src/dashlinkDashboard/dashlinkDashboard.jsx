@@ -1,31 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export function DashlinkDashboard() {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      title: '404 Error',
-      date: 'September 30th 2024',
-      message: 'Your website keeps returning a 404 error when I try to access the contact page. I Think there is some time of to error going on or the contact page is not properly set up.',
+      title: "404 Error",
+      date: "September 30th 2024",
+      message:
+        "Your website keeps returning a 404 error when I try to access the contact page. I Think there is some time of to error going on or the contact page is not properly set up.",
       upvotes: 13,
       resolved: false,
     },
     {
       id: 2,
-      title: 'Dark Mode Request',
-      date: 'Oct 1st 2024',
-      message: 'I would love to see a dark mode version or toggle button for your website. I think that would be a great ui feature!',
-      upvotes: 19,
+      title: "Dark Mode Request",
+      date: "Oct 1st 2024",
+      message:
+        "I would love to see a dark mode version or toggle button for your website. I think that would be a great ui feature!",
+      upvotes: 9,
       resolved: false,
     },
   ]);
 
+  function handleUpvote(id) {
+    setPosts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, upvotes: p.upvotes + 1 } : p))
+    );
+  }
+
+  function handleDelete(id) {
+    setPosts((prev) => prev.filter((p) => p.id !== id));
+  }
+
+  function handleResolve(id) {
+    setPosts((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, resolved: true } : p))
+    );
+  }
+
   return (
     <main className="px-10 py-5">
       <nav className="font-bold flex gap-4 mb-7">
-        <NavLink to="/clientDashboard" className="btn btn-outline btn-sm"
-          ><svg
+        <NavLink to="/clientDashboard" className="btn btn-outline btn-sm">
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
             fill="currentColor"
@@ -37,8 +55,8 @@ export function DashlinkDashboard() {
               clip-rule="evenodd"
             />
           </svg>
-          Back</NavLink
-        >
+          Back
+        </NavLink>
       </nav>
       {/* <!--PLACEHOLDER : DYNAMIC DATA FROM DATABASE OF PUBLIC FEEDBACK POSTS TIED TO THE USER'S DASHLINK--> */}
       <h2 className="text-4xl font-bold text-center mb-5">
@@ -49,7 +67,8 @@ export function DashlinkDashboard() {
         <NavLink
           className="btn btn-outline btn-secondary font-bold"
           to="/publicLink"
-          >Copy
+        >
+          Copy
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -68,8 +87,11 @@ export function DashlinkDashboard() {
             />
           </svg>
         </NavLink>
-        <NavLink className="btn btn-outline btn-ghost font-bold" to="/publicLink"
-          >Download
+        <NavLink
+          className="btn btn-outline btn-ghost font-bold"
+          to="/publicLink"
+        >
+          Download
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -94,87 +116,56 @@ export function DashlinkDashboard() {
               d="M10 2a1.5 1.5 0 0 0-1.5 1.5V6A1.5 1.5 0 0 0 10 7.5h2.5A1.5 1.5 0 0 0 14 6V3.5A1.5 1.5 0 0 0 12.5 2H10Zm2.5 1.5H10V6h2.5V3.5Z"
               clip-rule="evenodd"
             />
-            <path
-              d="M8.5 9.417a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM8.5 13.083a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM13.083 8.5a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833ZM12.166 13.084a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM11.25 10.333a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833Z"
-            />
+            <path d="M8.5 9.417a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM8.5 13.083a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM13.083 8.5a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833ZM12.166 13.084a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM11.25 10.333a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833Z" />
           </svg>
         </NavLink>
       </div>
+
       {/* <!-- LIST OF POSTS --> */}
       <ul className="max-sm:text-sm">
-        <li className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
-          <div className="card-body items-left text-left">
-            <div className="flex justify-between">
-              <h2 className="card-title">[post 1 title]</h2>
-              <div className="indicator">
-                <span className="indicator-item badge badge-secondary">15</span>
-                <button className="btn btn-sm">Up Vote ⬆️</button>
+        {[...posts]
+          .sort((a, b) => b.upvotes - a.upvotes)
+          .map((post) => (
+            <li
+              key={post.id}
+              className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7"
+            >
+              <div className="card-body items-left text-left">
+                <div className="flex justify-between">
+                  <h2 className="card-title">
+                    {post.resolved ? <s>{post.title}</s> : post.title}
+                  </h2>
+                  <div className="indicator">
+                    <span className="indicator-item badge badge-secondary">
+                      {post.upvotes}
+                    </span>
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => handleUpvote(post.id)}
+                    >
+                      Up Vote ⬆️
+                    </button>
+                  </div>
+                </div>
+                <p>{post.resolved ? <s>{post.date}</s> : post.date}</p>
+                <p>{post.resolved ? <s>{post.message}</s> : post.message}</p>
+                <div className="card-actions justify-between mt-5">
+                  <button
+                    className="btn btn-primary btn-outline"
+                    onClick={() => handleResolve(post.id)}
+                  >
+                    Mark as Resolved
+                  </button>
+                  <button
+                    className="btn btn-error btn-outline"
+                    onClick={() => handleDelete(post.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-            <p>[post date]</p>
-            <p>
-              [Comment] Lorem ipsum odor amet, consectetuer adipiscing elit.
-              Libero aliquam curabitur amet ipsum interdum! Libero facilisi
-              tempor sodales vel elit. Quisque orci sagittis luctus blandit diam
-              adipiscing.
-            </p>
-            <div className="card-actions justify-between mt-5">
-              <button className="btn btn-primary btn-outline">
-                Mark as Resolved
-              </button>
-              <button className="btn btn-error btn-outline">Delete</button>
-            </div>
-          </div>
-        </li>
-
-        <li className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
-          <div className="card-body items-left text-left">
-            <div className="flex justify-between">
-              <h2 className="card-title">404 Error</h2>
-              <div className="indicator">
-                <span className="indicator-item badge badge-secondary">13</span>
-                <button className="btn btn-sm">Up Vote ⬆️</button>
-              </div>
-            </div>
-            <p>September 30th 2024</p>
-            <p>
-              Your website keeps returning a 404 error when I try to access the
-              contact page. I Think there is some time of to error going on or
-              the contact page is not properly set up.
-            </p>
-            <div className="card-actions justify-between mt-5">
-              <button className="btn btn-primary btn-outline">
-                Mark as Resolved
-              </button>
-              <button className="btn btn-error btn-outline">Delete</button>
-            </div>
-          </div>
-        </li>
-
-        <li className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
-          <div className="card-body items-left text-left">
-            <div className="flex justify-between">
-              <h2 className="card-title">[post 3 title]</h2>
-              <div className="indicator">
-                <span className="indicator-item badge badge-secondary">9</span>
-                <button className="btn btn-sm">Up Vote ⬆️</button>
-              </div>
-            </div>
-            <p>[post date]</p>
-            <p>
-              [Comment] Lorem ipsum odor amet, consectetuer adipiscing elit.
-              Libero aliquam curabitur amet ipsum interdum! Libero facilisi
-              tempor sodales vel elit. Quisque orci sagittis luctus blandit diam
-              adipiscing.
-            </p>
-            <div className="card-actions justify-between mt-5">
-              <button className="btn btn-primary btn-outline">
-                Mark as Resolved
-              </button>
-              <button className="btn btn-error btn-outline">Delete</button>
-            </div>
-          </div>
-        </li>
+            </li>
+          ))}
       </ul>
     </main>
   );
