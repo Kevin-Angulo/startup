@@ -95,25 +95,30 @@ I am going to use the required technologies in the following ways...
   ### CSS Deliverable
 
 1. **Properly Styled Header, Footer, and Main Content Body**
+
    - Used **Tailwind's flexbox/grid system** (`flex`, `grid`) for structured layouts.
    - Applied **DaisyUI components** (`navbar`, `footer`, `container`) to ensure consistency.
    - Adjusted **padding (`py-4`) and margins (`my-6`)** for spacing.
 
 2. **Properly Styled Navigation Elements**
+
    - Implemented a **responsive navbar** using `flex justify-between items-center`.
    - Styled navigation links with **hover effects** (`hover:text-primary`).
    - Used **DaisyUI’s `btn-link` and `btn-outline`** for interactive navigation elements.
 
 3. **Responsive to Window Resizing**
+
    - Used **Tailwind’s breakpoint classes** (`sm:`, `md:`, `lg:`, `xl:`) for adaptive layouts.
    - Ensured a **fluid design** with `w-full` and `max-w-lg`.
    - Verified **responsiveness** using `flex-wrap` and `grid-cols-1 sm:grid-cols-2`.
 
 4. **Properly Styled Application Elements**
+
    - Styled **cards, modals, and buttons** using **DaisyUI’s `card`, `btn`, and `modal` components**.
    - Used **box shadows (`shadow-lg`) and rounded borders (`rounded-xl`)** for a modern look.
 
 5. **Properly Styled Application Text Content**
+
    - Applied **Tailwind typography** for headings (`text-3xl font-bold`) and body text (`text-base text-neutral`).
    - Used **DaisyUI’s alert component** for user feedback messages.
 
@@ -122,7 +127,7 @@ I am going to use the required technologies in the following ways...
    - Applied **Tailwind’s aspect-ratio utility** (`aspect-w-16 aspect-h-9`) for consistent scaling.
    - Integrated **hover effects** (`hover:opacity-75`) for interactive images.
 
-  ### React Phase 1:Routing Deliverable
+### React Phase 1: Routing Deliverable
 
 - [x] Port Simon CSS [Simon](https://simon.pro-dash-link.click)
 - [x] Implement React into my frontend using Vite, React, and Tailwind CSS
@@ -131,3 +136,41 @@ I am going to use the required technologies in the following ways...
 - [x] Notes Update of React Front End Use
 - [x] Final version pushed to production to [Start-Up](https://startup.pro-dash-link.click)
 - [x] Submitted on Canvas
+
+  ### React Phase 2: Reactivity
+
+- [x] **Ported Simon CSS** and deployed to [Simon](https://simon.pro-dash-link.click)
+- [x] **Implemented reactivity** using `useState`, `useEffect`, and `setInterval`
+- [x] **Footer includes** my name and GitHub repo link
+- [x] **Git history** demonstrates steady progress and ownership of the code
+- [x] **Updated notes.md** with learnings and component functionality
+- [x] **Final version deployed** to [Startup App](https://startup.pro-dash-link.click)
+- [x] **Assignment submitted** via Canvas
+
+- `app.jsx`  
+  Conditionally displays the "Dashboard" button based on whether a user is authenticated (checked using `localStorage`).
+
+- `login.jsx`  
+  Mocks a login experience with form input, uses `useState`, stores the "user" in `localStorage`, and routes to the dashboard.
+
+- `clientDashboard.jsx`
+
+  - Allows authenticated users to create new **DashLinks**
+  - Uses `useState` for form state and DashLink list
+  - Simulates **real-time notifications** for each DashLink with `setInterval`
+
+- `dashlinkDashboard.jsx`
+
+  - Lists posts tied to a selected DashLink
+  - Supports upvoting, resolving, and deleting posts
+  - Posts auto-sort by number of upvotes (descending)
+  - Simulates upvote changes with `setInterval`
+  - Includes "Copy Link" and "Download QR" (mocked behavior)
+
+- `publicLink.jsx`
+  - Allows any user to submit feedback (title + body)
+  - Posts are rendered in real-time
+  - Includes mock validation with a "captcha toggle"
+  - Enables upvoting of public posts and sorts them live
+
+---
