@@ -62,6 +62,27 @@ export function DashlinkDashboard() {
     return () => clearInterval(interval);
   }, []);
 
+  //copy link button functionality
+  const copyLinkToClipboard = () => {
+    const fakePublicUrl = `https://startup.pro-dash-link.click/public/12345`; // Replace 12345 with a dynamic ID in the future
+    navigator.clipboard
+      .writeText(fakePublicUrl)
+      .then(() => alert("Link copied to clipboard!"))
+      .catch((err) => console.error("Failed to copy: ", err));
+  };
+
+  //download qr code functionality
+  const downloadQRCode = () => {
+    const qrImageUrl =
+      "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://startup.pro-dash-link.click/public/12345";
+    const link = document.createElement("a");
+    link.href = qrImageUrl;
+    link.download = "dashlink-qr-code.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <main className="px-10 py-5">
       <nav className="font-bold flex gap-4 mb-7">
@@ -87,9 +108,9 @@ export function DashlinkDashboard() {
       </h2>
       {/* <!-- QR CODE & Link Buttons --> */}
       <div className="flex mx-auto max-w-sm justify-evenly mb-10">
-        <NavLink
+        <button
           className="btn btn-outline btn-secondary font-bold"
-          to="/publicLink"
+          onClick={copyLinkToClipboard}
         >
           Copy
           <svg
@@ -109,10 +130,10 @@ export function DashlinkDashboard() {
               clip-rule="evenodd"
             />
           </svg>
-        </NavLink>
-        <NavLink
+        </button>
+        <button
           className="btn btn-outline btn-ghost font-bold"
-          to="/publicLink"
+          onClick={downloadQRCode}
         >
           Download
           <svg
@@ -141,7 +162,7 @@ export function DashlinkDashboard() {
             />
             <path d="M8.5 9.417a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM8.5 13.083a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM13.083 8.5a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833ZM12.166 13.084a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM11.25 10.333a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833Z" />
           </svg>
-        </NavLink>
+        </button>
       </div>
 
       {/* <!-- LIST OF POSTS --> */}
