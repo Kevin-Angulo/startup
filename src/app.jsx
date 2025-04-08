@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter,
   NavLink,
@@ -13,6 +13,13 @@ import { Login } from "./login/login";
 import { PublicLink } from "./publicLink/publicLink";
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("userEmail");
+    if (savedUser) setUser(JSON.parse(savedUser));
+  }, []);
+
   return (
     <BrowserRouter>
       <div>
@@ -27,9 +34,11 @@ export default function App() {
             <h1 className="text-4xl font-bold max-sm:text-xl">DashLink</h1>
           </NavLink>
           <nav className="font-bold flex gap-4">
-            <NavLink to="clientDashboard" className="btn btn-outline btn-sm">
-              DASHBORD
-            </NavLink>
+            {user ? (
+              <NavLink to="clientDashboard" className="btn btn-outline btn-sm">
+                DASHBORD
+              </NavLink>
+            ) : null}
           </nav>
         </header>
 
