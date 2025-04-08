@@ -16,8 +16,22 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("userEmail");
-    if (savedUser) setUser(JSON.parse(savedUser));
+    const checkUser = () => {
+      const savedUser = localStorage.getItem("userEmail");
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      } else {
+        setUser(null);
+      }
+    };
+
+    checkUser();
+
+    window.addEventListener("userUpdated", checkUser);
+
+    return () => {
+      window.removeEventListener("userUpdated", checkUser);
+    };
   }, []);
 
   return (

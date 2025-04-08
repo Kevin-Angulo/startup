@@ -17,11 +17,14 @@ export function Login() {
     }
 
     //Store in Local Storage (User Information)
-    localStorage.setItem('userEmail', JSON.stringify(email));
-    localStorage.setItem('userPassword', JSON.stringify(password));
+    localStorage.setItem("userEmail", JSON.stringify(email));
+    localStorage.setItem("userPassword", JSON.stringify(password));
 
     // Redirect to clientDashboard
     navigate("/clientDashboard");
+
+    localStorage.setItem("user", JSON.stringify({ name: email }));
+    window.dispatchEvent(new Event("userUpdated"));
   }
 
   return (
@@ -55,11 +58,8 @@ export function Login() {
             />
           </label>
           <div className="card-actions justify-between mt-4">
-            <button
-            className="btn btn-sm btn-primary"
-            onClick={handleLogin}
-            >
-            SIGN IN
+            <button className="btn btn-sm btn-primary" onClick={handleLogin}>
+              SIGN IN
             </button>
           </div>
         </div>
