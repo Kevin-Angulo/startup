@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 export function DashlinkDashboard() {
+  //dynamic dashlink name from location state
   const location = useLocation();
   const dashlinkName = location.state?.name || "Your DashLink";
+
+  //initial posts
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -26,6 +28,7 @@ export function DashlinkDashboard() {
     },
   ]);
 
+  //onClick Function handlers
   function handleUpvote(id) {
     setPosts((prev) =>
       prev.map((p) => (p.id === id ? { ...p, upvotes: p.upvotes + 1 } : p))
@@ -41,6 +44,23 @@ export function DashlinkDashboard() {
       prev.map((p) => (p.id === id ? { ...p, resolved: true } : p))
     );
   }
+
+  //simulate updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPosts((prevPosts) => {
+        const index = Math.floor(Math.random() * prevPosts.length);
+        const updatedPosts = [...prevPosts];
+        updatedPosts[index] = {
+          ...updatedPosts[index],
+          upvotes: updatedPosts[index].upvotes + 1,
+        };
+        return updatedPosts;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="px-10 py-5">
@@ -126,7 +146,7 @@ export function DashlinkDashboard() {
 
       {/* <!-- LIST OF POSTS --> */}
       <ul className="max-sm:text-sm">
-        {[...posts]
+        {posts
           .sort((a, b) => b.upvotes - a.upvotes)
           .map((post) => (
             <li
