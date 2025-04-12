@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const uuid = require("uuid");
 const bcrypt = require("bcryptjs");
+const authCookieName = "token";
 
 const app = express();
 app.use(express.json()); // JSON body parsing using built-in middleware

@@ -24,6 +24,7 @@ export function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, password: password }),
+      credentials: "include",
     });
 
     //check response status
@@ -51,6 +52,7 @@ export function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, password: password }),
+      credentials: "include",
     });
 
     //check response status
