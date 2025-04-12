@@ -7,24 +7,60 @@ export function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function handleLogin(e) {
+  //HANDLE LOGIN API CALL
+  async function handleLogin(e) {
     e.preventDefault();
-    // Placeholder for authentication logic
+    
+    //check for both email and password
     if (!email || !password) {
-      // Simulate Error Validation
-      alert("Please enter valid credentials");
+      alert("Please enter both email and password.");
       return;
     }
 
-    //Store in Local Storage (User Information)
-    localStorage.setItem("userEmail", JSON.stringify(email));
-    localStorage.setItem("userPassword", JSON.stringify(password));
+    // make api call to authenticate user
+    const response = await fetch("/api/auth/login", {
+      method : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    });
 
-    // Redirect to clientDashboard
-    navigate("/clientDashboard");
+    //check response status
+    if (response.ok) {
+      navigate("/clientDashboard");
+    } else {
+      alert("Login failed. Please check your credentials.");
+    }
+  }
 
-    localStorage.setItem("user", JSON.stringify({ name: email }));
-    window.dispatchEvent(new Event("userUpdated"));
+  //HANDLE "CREATE USER" API CALL
+  async function handleRegister(e) {
+    e.preventDefault();
+
+    //check for both email and password
+    if (!email || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
+
+    // make api call to create new user
+    const response = await fetch("/api/auth/create", {
+      method : 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    });
+
+    //check response status
+    if (response.ok) {
+      navigate("/clientDashboard");
+    } else if (response.status === 409) {
+      alert("User already exists. Please log in.");
+    } else {
+      alert("User creation failed. Please try again.");
+    }
   }
 
   return (
@@ -60,6 +96,9 @@ export function Login() {
           <div className="card-actions justify-between mt-4">
             <button className="btn btn-sm btn-primary" onClick={handleLogin}>
               SIGN IN
+            </button>
+            <button className="btn btn-sm btn-secondary" onClick={handleRegister}>
+              SIGN UP
             </button>
           </div>
         </div>

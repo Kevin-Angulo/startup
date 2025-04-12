@@ -12,7 +12,7 @@ const users = []; // Temporary in-memory "database"
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
-app.use(express.static("public")); // Serve up the front-end static content hosting
+app.use(express.static("public"));
 
 // Router for service endpoints
 var apiRouter = express.Router();
