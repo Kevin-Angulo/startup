@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 
 export function DashlinkDashboard() {
   //dynamic dashlink name from location state
@@ -163,12 +163,10 @@ export function DashlinkDashboard() {
             <path d="M8.5 9.417a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM8.5 13.083a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM13.083 8.5a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833ZM12.166 13.084a.917.917 0 1 1 1.833 0 .917.917 0 0 1-1.833 0ZM11.25 10.333a.917.917 0 1 0 0 1.833.917.917 0 0 0 0-1.833Z" />
           </svg>
         </button>
-        <NavLink
-        to="/publicLink"
-        className="btn btn-outline btn-accent mb-5"
-        >Public Page</NavLink>
+        <NavLink to="/publicLink" className="btn btn-outline btn-accent mb-5">
+          Public Page
+        </NavLink>
       </div>
-      
 
       {/* <!-- LIST OF POSTS --> */}
       <ul className="max-sm:text-sm">

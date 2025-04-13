@@ -6,6 +6,7 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
+import { ProtectedRoute } from "./protect/ProtectedRoute";
 
 import { ClientDashboard } from "./clientDashboard/clientDashboard";
 import { DashlinkDashboard } from "./dashlinkDashboard/dashlinkDashboard";
@@ -58,9 +59,25 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/clientDashboard" element={<ClientDashboard />} />
+
+          <Route
+            path="/clientDashboard"
+            element={
+              <ProtectedRoute>
+                <ClientDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashlinkDashboard"
+            element={
+              <ProtectedRoute>
+                <DashlinkDashboard />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/publicLink" element={<PublicLink />} />
-          <Route path="/dashlinkDashboard" element={<DashlinkDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -8,7 +8,12 @@ const app = express();
 app.use(express.json()); // JSON body parsing using built-in middleware
 app.use(cookieParser()); // Use the cookie parser middleware for tracking authentication tokens
 
-const users = []; // Temporary in-memory "database"
+const users = []; // our in-memory user "database"
+
+async function getUser(field, value) {
+  if (!value) return null;
+  return users.find((u) => u[field] === value);
+}
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -75,6 +80,7 @@ app.use((_req, res) => {
   res.sendFile("index.html", { root: "public" });
 });
 
+//create user function
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
@@ -88,16 +94,33 @@ async function createUser(email, password) {
   return user;
 }
 
+//find user function
 async function findUser(field, value) {
   if (!value) return null;
 
   return users.find((u) => u[field] === value);
 }
 
+// Get the current user's information
+apiRouter.get("/user/me", async (req, res) => {
+  try {
+    const token = req.cookies["token"];
+    const user = await getUser("token", token);
+
+    if (user) {
+      res.send({ email: user.email });
+    } else {
+      res.status(401).send({ msg: "Unauthorized" });
+    }
+  } catch (error) {
+    console.error("🔥 Error in /api/user/me:", error);
+    res.status(500).send({ msg: "Internal Server Error" });
+  }
+});
+
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    secure: true,
     httpOnly: true,
     sameSite: "strict",
   });

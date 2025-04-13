@@ -1,5 +1,5 @@
-import React, { useState, useEffect }from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export function ClientDashboard() {
   const [dashlinkName, setDashlinkName] = React.useState("");
@@ -7,7 +7,7 @@ export function ClientDashboard() {
 
   // Load from local storage on page load
   useEffect(() => {
-    const stored = localStorage.getItem('dashlinks');
+    const stored = localStorage.getItem("dashlinks");
     if (stored) {
       setDashlinks(JSON.parse(stored));
     }
@@ -15,16 +15,16 @@ export function ClientDashboard() {
 
   // Save to local storage whenever dashlinks change
   useEffect(() => {
-    localStorage.setItem('dashlinks', JSON.stringify(dashlinks));
+    localStorage.setItem("dashlinks", JSON.stringify(dashlinks));
   }, [dashlinks]);
 
   const createDashLink = () => {
     if (!dashlinkName) return;
 
     const newDashlink = {
-      id : Date.now(), // Unique ID based on timestamp *for mapping later on list
-      name : dashlinkName,
-      unreadCount : Math.floor(Math.random() * 10), // Placeholder for unread count
+      id: Date.now(), // Unique ID based on timestamp *for mapping later on list
+      name: dashlinkName,
+      unreadCount: Math.floor(Math.random() * 10), // Placeholder for unread count
     };
 
     setDashlinks([...dashlinks, newDashlink]);
@@ -33,7 +33,7 @@ export function ClientDashboard() {
 
   return (
     <main className="px-10 py-5">
-       {/* Hero Title  */}
+      {/* Hero Title  */}
       <h2 className="text-4xl font-bold text-center pb-10 max-sm:text-3xl">
         DashLink Admin Dashboard
       </h2>
@@ -49,10 +49,8 @@ export function ClientDashboard() {
             className="input input-bordered w-full max-w-xs"
           />
           <div className="card-actions justify-end">
-            <button
-            className="btn"
-            onClick={createDashLink}
-            >Create
+            <button className="btn" onClick={createDashLink}>
+              Create
             </button>
           </div>
         </div>
@@ -66,15 +64,19 @@ export function ClientDashboard() {
         <ul className="grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-3 gap-5 place-items-center text-lg font-bold">
           {dashlinks.map((dashlink) => (
             <div key={dashlinkName.id} className="indicator">
-            {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-            <span className="indicator-item badge badge-secondary">{dashlink.unreadCount}</span>
-            <NavLink
-            to="/dashlinkDashboard"
-            state={{ name: dashlink.name }}
-            className="btn"
-            >{dashlink.name}</NavLink>
-          </div>
-        ))}
+              {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
+              <span className="indicator-item badge badge-secondary">
+                {dashlink.unreadCount}
+              </span>
+              <NavLink
+                to="/dashlinkDashboard"
+                state={{ name: dashlink.name }}
+                className="btn"
+              >
+                {dashlink.name}
+              </NavLink>
+            </div>
+          ))}
         </ul>
       </div>
     </main>

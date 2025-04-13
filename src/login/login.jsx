@@ -10,7 +10,7 @@ export function Login() {
   //HANDLE LOGIN API CALL
   async function handleLogin(e) {
     e.preventDefault();
-    
+
     //check for both email and password
     if (!email || !password) {
       alert("Please enter both email and password.");
@@ -19,7 +19,7 @@ export function Login() {
 
     // make api call to authenticate user
     const response = await fetch("/api/auth/login", {
-      method : "POST",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,7 +47,7 @@ export function Login() {
 
     // make api call to create new user
     const response = await fetch("/api/auth/create", {
-      method : 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -99,7 +99,10 @@ export function Login() {
             <button className="btn btn-sm btn-primary" onClick={handleLogin}>
               SIGN IN
             </button>
-            <button className="btn btn-sm btn-secondary" onClick={handleRegister}>
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={handleRegister}
+            >
               SIGN UP
             </button>
           </div>

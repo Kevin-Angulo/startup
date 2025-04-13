@@ -89,13 +89,13 @@ export function PublicLink() {
             <div className="flex items-center gap-3 mb-3">
               <p className="font-bold">I am a robot</p>
               <input
-              type="checkbox"
-              className="toggle"
-              checked={!isHuman}
-              onChange={() => setIsHuman(!isHuman)} />
+                type="checkbox"
+                className="toggle"
+                checked={!isHuman}
+                onChange={() => setIsHuman(!isHuman)}
+              />
             </div>
-            <button
-            className="btn">Send Feedback</button>
+            <button className="btn">Send Feedback</button>
           </div>
         </form>
       </div>
@@ -116,9 +116,11 @@ export function PublicLink() {
                     {post.votes}
                   </span>
                   <button
-                  className="btn btn-sm"
-                  onClick={() => handleUpvote(post.id)}
-                  >Up Vote ⬆️</button>
+                    className="btn btn-sm"
+                    onClick={() => handleUpvote(post.id)}
+                  >
+                    Up Vote ⬆️
+                  </button>
                 </div>
               </div>
               <p>{post.date}</p>
