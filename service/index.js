@@ -9,6 +9,17 @@ app.use(express.json()); // JSON body parsing using built-in middleware
 app.use(cookieParser()); // Use the cookie parser middleware for tracking authentication tokens
 
 const users = []; // our in-memory user "database"
+const dashlinks = []; // our in-memory dashlinks "database"
+
+// Middleware to verify that the user is authorized to call an endpoint
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: "Unauthorized" });
+  }
+};
 
 async function getUser(field, value) {
   if (!value) return null;
@@ -79,17 +90,31 @@ apiRouter.get("/user/me", async (req, res) => {
   }
 });
 
-// ======== DEAFULT ROUTES =========
-
-// Middleware to verify that the user is authorized to call an endpoint
-const verifyAuth = async (req, res, next) => {
+// api/dashlink/create [CREATE NEW DASHLINK]
+apiRouter.post("/dashlink/create", verifyAuth, async (req, res) => {
   const user = await findUser("token", req.cookies[authCookieName]);
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: "Unauthorized" });
-  }
-};
+
+  const { name } = req.body;
+  if (!name) return res.status(400).send({ msg: "Dashlink name is required" });
+
+  const newDashlink = {
+    id: uuid.v4(),
+    name: name,
+    owner : user.email,
+    unreadCount: 0,
+  };
+
+  dashlinks.push(newDashlink);
+  res.status(201).send(newDashlink);
+});
+
+// api/dashlink/list [LIST ALL DASHLINKS]
+apiRouter.get("dashlink/list", verifyAuth, async (req, res) => {
+  const userLinks = dashlinks.filter((link) => link.userEmail === req.user.email);
+  res.send(userLinks);
+});
+
+// ======== DEAFULT ROUTES =========
 
 // Error Handler
 app.use(function (err, req, res, next) {

@@ -5,30 +5,45 @@ export function ClientDashboard() {
   const [dashlinkName, setDashlinkName] = React.useState("");
   const [dashlinks, setDashlinks] = React.useState([]);
 
-  // Load from local storage on page load
+  ///fetch existing dashlinks with api/dashlinks/list
   useEffect(() => {
-    const stored = localStorage.getItem("dashlinks");
-    if (stored) {
-      setDashlinks(JSON.parse(stored));
+    async function getDashlinks() {
+      try {
+        const res = await fetch("/api/dashlink/list");
+        if (res.ok) {
+          const data = await res.json();
+          setDashlinks(data);
+        } else {
+          console.error("Failed to fetch dashlinks");
+        }
+      } catch (error) {
+        console.error("Error fetching dashlinks:", error);
+      }
     }
   }, []);
 
-  // Save to local storage whenever dashlinks change
-  useEffect(() => {
-    localStorage.setItem("dashlinks", JSON.stringify(dashlinks));
-  }, [dashlinks]);
-
-  const createDashLink = () => {
+  //handler function for creating new dashlink
+  const createDashLink = async () => {
     if (!dashlinkName) return;
 
-    const newDashlink = {
-      id: Date.now(), // Unique ID based on timestamp *for mapping later on list
-      name: dashlinkName,
-      unreadCount: Math.floor(Math.random() * 10), // Placeholder for unread count
-    };
+    try {
+      const res = await fetch("/api/dashlink/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name: dashlinkName }),
+      });
 
-    setDashlinks([...dashlinks, newDashlink]);
-    setDashlinkName(""); // Clear input field
+      if (res.ok) {
+        const created = await res.json();
+        setDashlinks((prev) => [...prev, created]);
+        setDashlinkName("");
+      } else {
+        alert("Failed to create dashlink");
+      }
+    } catch (error) {
+      console.error("Error creating dashlink:", error);
+    }
   };
 
   return (
@@ -61,23 +76,27 @@ export function ClientDashboard() {
         <h2 className="text-2xl font-semibold text-center my-10 underline">
           My DashLinks
         </h2>
-        <ul className="grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-3 gap-5 place-items-center text-lg font-bold">
-          {dashlinks.map((dashlink) => (
-            <div key={dashlinkName.id} className="indicator">
-              {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
-              <span className="indicator-item badge badge-secondary">
-                {dashlink.unreadCount}
-              </span>
-              <NavLink
-                to="/dashlinkDashboard"
-                state={{ name: dashlink.name }}
-                className="btn"
-              >
-                {dashlink.name}
-              </NavLink>
-            </div>
-          ))}
-        </ul>
+        {dashlinks.length === 0 ? (
+          <p>No Dashlinks Created....</p>
+        ) : (
+          <ul className="grid grid-cols-4 max-sm:grid-cols-1 max-md:grid-cols-3 gap-5 place-items-center text-lg font-bold">
+            {dashlinks.map((dashlink) => (
+              <div key={dashlinkName.id} className="indicator">
+                {/* PLACEHOLDER : WEBSOCKET Real Time Notifications of new Posts */}
+                <span className="indicator-item badge badge-secondary">
+                  {dashlink.unreadCount}
+                </span>
+                <NavLink
+                  to="/dashlinkDashboard"
+                  state={{ name: dashlink.name }}
+                  className="btn"
+                >
+                  {dashlink.name}
+                </NavLink>
+              </div>
+            ))}
+          </ul>
+        )}
       </div>
     </main>
   );
