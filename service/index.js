@@ -10,6 +10,26 @@ app.use(cookieParser()); // Use the cookie parser middleware for tracking authen
 
 const users = []; // our in-memory user "database"
 const dashlinks = []; // our in-memory dashlinks "database"
+const posts = [
+  {
+    id: 1,
+    title: "404 Error",
+    date: "September 30th 2024",
+    message:
+      "Your website keeps returning a 404 error when I try to access the contact page. I Think there is some time of to error going on or the contact page is not properly set up.",
+    upvotes: 13,
+    resolved: false,
+  },
+  {
+    id: 2,
+    title: "Dark Mode Request",
+    date: "Oct 1st 2024",
+    message:
+      "I would love to see a dark mode version or toggle button for your website. I think that would be a great ui feature!",
+    upvotes: 9,
+    resolved: false,
+  },
+];
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
@@ -109,10 +129,48 @@ apiRouter.post("/dashlink/create", verifyAuth, async (req, res) => {
 });
 
 // api/dashlink/list [LIST ALL DASHLINKS]
-apiRouter.get("dashlink/list", verifyAuth, async (req, res) => {
+apiRouter.get("/dashlink/list", verifyAuth, async (req, res) => {
   const userLinks = dashlinks.filter((link) => link.userEmail === req.user.email);
   res.send(userLinks);
 });
+
+// api/dashboard/list [LIST ALL POSTS]
+apiRouter.get("/dashboard/list", verifyAuth, async (req, res) => {
+  //api logic
+  console.log(`Post list requested : ${posts}`)
+  res.send(posts);
+});
+
+// api/dashboard/resolved/:id [Resolve Post]
+apiRouter.put("/dashboard/resolved/:id", verifyAuth, async (req, res) => {
+  //api logic
+  const id = parseInt(req.params.id);
+  const post = post.find((p) => p.id === id);
+
+  if(post) {
+    post.resolved = true;
+    res.send(post);
+  } else {
+    res.status(404).send({ msg: "Post not found" });
+  }
+
+});
+
+// api/dashboard/delete/:id [Delete Post]
+apiRouter.delete("/dashboard/delete/:id", verifyAuth, async (req, res) => {
+  //api logic
+  const id = parseInt(req.params.id);
+
+  const index = posts.findIndex((p) => p.id === id);
+  if (index !== -1) {
+    const deleted = posts.splice(index, 1);
+    res.send(deleted[0]);
+  } else {
+    res.status(404).send({ msg: "post not found" });
+  }
+  
+});
+
 
 // ======== DEAFULT ROUTES =========
 

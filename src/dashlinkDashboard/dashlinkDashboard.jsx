@@ -7,26 +7,23 @@ export function DashlinkDashboard() {
   const dashlinkName = location.state?.name || "Your DashLink";
 
   //initial posts
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "404 Error",
-      date: "September 30th 2024",
-      message:
-        "Your website keeps returning a 404 error when I try to access the contact page. I Think there is some time of to error going on or the contact page is not properly set up.",
-      upvotes: 13,
-      resolved: false,
-    },
-    {
-      id: 2,
-      title: "Dark Mode Request",
-      date: "Oct 1st 2024",
-      message:
-        "I would love to see a dark mode version or toggle button for your website. I think that would be a great ui feature!",
-      upvotes: 9,
-      resolved: false,
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  //fetch existing dashlinks with api/dashboard/list
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await fetch("/api/dashboard/list");
+        if (!res.ok) throw new Error("Failed to fetch posts");
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    }
+
+    fetchPosts();
+  }, []);
 
   //onClick Function handlers
   function handleUpvote(id) {
@@ -44,23 +41,6 @@ export function DashlinkDashboard() {
       prev.map((p) => (p.id === id ? { ...p, resolved: true } : p))
     );
   }
-
-  //simulate updates
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPosts((prevPosts) => {
-        const index = Math.floor(Math.random() * prevPosts.length);
-        const updatedPosts = [...prevPosts];
-        updatedPosts[index] = {
-          ...updatedPosts[index],
-          upvotes: updatedPosts[index].upvotes + 1,
-        };
-        return updatedPosts;
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   //copy link button functionality
   const copyLinkToClipboard = () => {
