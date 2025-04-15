@@ -145,7 +145,7 @@ apiRouter.get("/dashboard/list", verifyAuth, async (req, res) => {
 apiRouter.put("/dashboard/resolved/:id", verifyAuth, async (req, res) => {
   //api logic
   const id = parseInt(req.params.id);
-  const post = post.find((p) => p.id === id);
+  const post = posts.find((p) => p.id === id);
 
   if(post) {
     post.resolved = true;

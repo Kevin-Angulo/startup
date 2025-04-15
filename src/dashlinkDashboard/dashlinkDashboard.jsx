@@ -26,20 +26,34 @@ export function DashlinkDashboard() {
   }, []);
 
   //onClick Function handlers
-  function handleUpvote(id) {
-    setPosts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, upvotes: p.upvotes + 1 } : p))
-    );
+  async function handleDelete(id) {
+    try {
+      const res = await fetch(`/api/dashboard/delete/${id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("Failed to delete post");
+
+      setPosts((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      console.error("Error deleting post:", err);
+    }
   }
 
-  function handleDelete(id) {
-    setPosts((prev) => prev.filter((p) => p.id !== id));
-  }
+  async function handleResolve(id) {
+    try {
+      const res = await fetch(`/api/dashboard/resolved/${id}`, {
+        method: "PUT",
+      });
 
-  function handleResolve(id) {
-    setPosts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, resolved: true } : p))
-    );
+      if (!res.ok) throw new Error("Failed to resolve post");
+
+      const updated = await res.json();
+      setPosts((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, resolved: true } : p))
+      );
+    } catch (err) {
+      console.error("Error resolving post : ", err);
+    }
   }
 
   //copy link button functionality
@@ -168,7 +182,6 @@ export function DashlinkDashboard() {
                     </span>
                     <button
                       className="btn btn-sm"
-                      onClick={() => handleUpvote(post.id)}
                     >
                       Up Vote ⬆️
                     </button>
