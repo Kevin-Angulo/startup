@@ -7,15 +7,24 @@ export function PublicLink() {
   const [postBody, setPostBody] = useState("");
   const [isHuman, setIsHuman] = useState(false);
 
-  //Posts from localStorage
+  //fetch existing dashlinks with api/dashboard/list
   useEffect(() => {
-    const stored = localStorage.getItem("publicPosts");
-    const loadedPosts = stored ? JSON.parse(stored) : [];
-    setPosts(loadedPosts);
+    async function fetchPosts() {
+      try {
+        const res = await fetch("/api/post/list");
+        if (!res.ok) throw new Error("Failed to fetch posts");
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
+    }
+
+    fetchPosts();
   }, []);
 
   //Handle Functions for New Post and Upvote
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     //Captcha Validation
@@ -25,30 +34,45 @@ export function PublicLink() {
     }
 
     const newPost = {
-      id: Date.now(),
+      dashlinkName: "Public Link",
       title: postTitle,
-      body: postBody,
-      votes: 0,
-      date: new Date().toLocaleDateString(),
+      message: postBody,
     };
 
-    const updated = [newPost, ...posts];
-    setPosts(updated);
-    localStorage.setItem("publicPosts", JSON.stringify(updated));
+    try {
+      const res = await fetch("/api/post/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPost),
+      });
 
-    setPostTitle("");
-    setPostBody("");
-    setIsHuman(false);
-  };
+      if (res.ok) {
+        const createdPost = await res.json();
+        setPosts((prev) => [createdPost, ...prev]);
+        setPostTitle("");
+        setPostBody("");
+      } else {
+        alert("Failed to submit feedback");
+      }
+    } catch (err) {
+      console.error("Error submitting post:", err);
+    }
+  }
 
-  const handleUpvote = (id) => {
-    const updated = posts.map((post) =>
-      post.id === id ? { ...post, votes: post.votes + 1 } : post
-    );
-    updated.sort((a, b) => b.votes - a.votes);
-    setPosts(updated);
-    localStorage.setItem("publicPosts", JSON.stringify(updated));
-  };
+  async function handleUpvote(id) {
+    const res = await fetch(`/api/post/upvote/${id}`, {
+      method: "PUT",
+    });
+
+    if (res.ok) {
+      const updatedPost = await res.json();
+      setPosts((prev) =>
+        prev.map((p) => (p.id === updatedPost.id ? updatedPost : p))
+      );
+    } else {
+      alert("Failed to upvote");
+    }
+  }
 
   return (
     <main className="px-10 py-5">
@@ -107,13 +131,16 @@ export function PublicLink() {
       {/* <!-- LIST OF POSTS --> */}
       <ul className="max-sm:text-sm">
         {posts.map((post) => (
-          <li className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7">
+          <li
+            key={post.id}
+            className="card bg-neutral text-neutral-content max-w-xl mx-auto mb-7"
+          >
             <div className="card-body items-left text-left">
               <div className="flex justify-between">
                 <h2 className="card-title">{post.title}</h2>
                 <div className="indicator">
                   <span className="indicator-item badge badge-secondary">
-                    {post.votes}
+                    {post.upvotes}
                   </span>
                   <button
                     className="btn btn-sm"
@@ -123,8 +150,8 @@ export function PublicLink() {
                   </button>
                 </div>
               </div>
-              <p>{post.date}</p>
-              <p>{post.body}</p>
+              <p className="font-bold">{post.date}</p>
+              <p>{post.message}</p>
             </div>
           </li>
         ))}

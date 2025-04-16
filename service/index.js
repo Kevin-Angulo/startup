@@ -171,6 +171,46 @@ apiRouter.delete("/dashboard/delete/:id", verifyAuth, async (req, res) => {
   
 });
 
+// api/post/list [List All Posts]
+apiRouter.get("/post/list", async (req, res) => {
+  res.send(posts);
+});
+
+// api/post/upvote [Upvote Post]
+apiRouter.put("/post/upvote/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = posts.find((p) => p.id === id);
+
+  if (!post) {
+    return res.status(404).send({ msg: "Post not found" });
+  }
+  post.upvotes += 1;
+  res.send(post);
+});
+
+// api/post/create [Create New Post]
+apiRouter.post("/post/create", (req, res) => {
+  const { dashlinkName, title, message } = req.body;
+  if (!dashlinkName || !title || !message) {
+    return res.status(400).send({ msg: "All fields required" });
+  }
+
+  const newPost = {
+    id: uuid.v4(),
+    dashlinkName: 'publicLink',
+    title,
+    date: new Date().toLocaleDateString(),
+    message,
+    upvotes: 0,
+    resolved: false,
+  };
+
+  posts.push(newPost);
+  res.status(201).send(newPost);
+});
+
+
+
 
 // ======== DEAFULT ROUTES =========
 
