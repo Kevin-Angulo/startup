@@ -174,3 +174,62 @@ I am going to use the required technologies in the following ways...
   - Enables upvoting of public posts and sorts them live
 
 ---
+
+### Startup Service
+
+- [x] **Ported Simon Service** and deployed to [Simon](https://simon.pro-dash-link.click)
+- [x] **Git history** demonstrates steady progress and ownership of the code
+- [x] **Updated notes.md** with learnings and component functionality
+- [x] **Final version deployed** to [Startup App](https://startup.pro-dash-link.click)
+- [x] **Assignment submitted** via Canvas
+
+### 🔹 5. Create an HTTP service using Node.js and Express
+- Implemented full backend in `service/index.js`
+
+---
+
+### 🔹 6. Frontend served up using Express static middleware
+- Configured with `express.static("public")` middleware
+- Runs bundled frontend from Vite using standard setup
+
+---
+
+### 🔹 7. Your frontend calls third-party service endpoints
+- Used the [goqr.me](https://goqr.me/api/) API to dynamically generate and download QR codes  
+  - Integrated in `dashlinkDashboard.jsx` for the download button
+
+---
+
+### 🔹 8. Your backend provides service endpoints
+- ✅ Fully working backend with these APIs:
+  - `POST /api/auth/create` – Create new user
+  - `POST /api/auth/login` – Login user
+  - `DELETE /api/auth/logout` – Logout user
+  - `GET /api/user/me` – Get authenticated user info
+  - `POST /api/dashlink/create` – Create new dashlink
+  - `GET /api/dashlink/list` – List user’s dashlinks
+  - `GET /api/dashboard/list` – List all posts (protected)
+  - `PUT /api/dashboard/resolved/:id` – Mark post as resolved
+  - `DELETE /api/dashboard/delete/:id` – Delete post
+  - `GET /api/post/list` – List public feedback posts
+  - `PUT /api/post/upvote/:id` – Upvote a public post
+  - `POST /api/post/create` – Submit a public feedback post
+
+---
+
+### 🔹 9. Your frontend calls your service endpoints
+- Frontend fetches from backend using `/api/*` routes:
+  - Auth logic in `login.jsx`
+  - Dashlink creation/listing in `clientDashboard.jsx`
+  - Post interaction in `dashlinkDashboard.jsx`
+  - Anonymous post creation and upvoting in `publicLink.jsx`
+
+---
+
+### 🔹 10. Supports registration, login, logout, and restricted endpoint
+- `/login.jsx` supports full register/login flow using backend
+- Auth token stored in a secure, `httpOnly` cookie
+- `ProtectedRoute.jsx` guards access to `/clientDashboard` and `/dashlinkDashboard`
+- `/api/user/me` confirms current auth status before route access
+
+---
