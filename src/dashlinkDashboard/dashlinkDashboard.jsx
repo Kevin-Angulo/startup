@@ -65,16 +65,26 @@ export function DashlinkDashboard() {
       .catch((err) => console.error("Failed to copy: ", err));
   };
 
-  //download qr code functionality
-  const downloadQRCode = () => {
-    const qrImageUrl =
-      "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://startup.pro-dash-link.click/public/12345";
-    const link = document.createElement("a");
-    link.href = qrImageUrl;
-    link.download = "dashlink-qr-code.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  //Handle QR CODE 3rd party api call
+  const handleQr = () => {
+    const publicUrl = `https://startup.pro-dash-link.click/publicLink`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(
+      publicUrl
+    )}`;
+
+    fetch(qrCodeUrl)
+      .then((res) => res.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "qr-code.png";
+        a.click();
+        URL.revokeObjectURL(url);
+      })
+      .catch(() => {
+        alert("Failed to download QR code.");
+      });
   };
 
   return (
@@ -127,7 +137,7 @@ export function DashlinkDashboard() {
         </button>
         <button
           className="btn btn-outline btn-ghost font-bold"
-          onClick={downloadQRCode}
+          onClick={handleQr}
         >
           Download
           <svg
@@ -180,11 +190,7 @@ export function DashlinkDashboard() {
                     <span className="indicator-item badge badge-secondary">
                       {post.upvotes}
                     </span>
-                    <button
-                      className="btn btn-sm"
-                    >
-                      Up Vote ⬆️
-                    </button>
+                    <button className="btn btn-sm">Up Vote ⬆️</button>
                   </div>
                 </div>
                 <p>{post.resolved ? <s>{post.date}</s> : post.date}</p>
